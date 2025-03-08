@@ -1,6 +1,7 @@
 from enum import Enum
-from typing import List, Optional, Dict, Any, Union
+from typing import List, Optional, Any
 from pydantic import BaseModel, Field
+from datetime import datetime, timedelta
 
 # Enums for parameter validation
 class Period(str, Enum):
@@ -54,11 +55,17 @@ class InsightsRequest(BaseModel):
     metric_type: MetricType = Field(..., description="How to aggregate results")
     breakdowns: Optional[List[Breakdown]] = Field(None, description="How to break down result set")
     timeframe: Optional[Timeframe] = Field(None, description="How far to look back for data")
-    since: Optional[int] = Field(None, description="Unix timestamp indicating start of range. Defaults to one year ago from tomorrow if not provided.")
-    until: Optional[int] = Field(None, description="Unix timestamp indicating end of range. Defaults to current timestamp if not provided.")
+    since: Optional[int] = Field(
+        None, 
+        description="Unix timestamp indicating start of range. Defaults to one year ago from tomorrow if not provided."
+    )
+    until: Optional[int] = Field(
+        None, 
+        description="Unix timestamp indicating end of range. Defaults to current timestamp if not provided."
+    )
     access_token: Optional[str] = Field(None, description="Instagram access token")
 
-# Response Models
+# Response models
 class BreakdownResult(BaseModel):
     dimension_values: List[str]
     value: int
@@ -85,26 +92,11 @@ class MetricData(BaseModel):
     values: Optional[List[TimeSeriesValue]] = None
     id: str
 
-class PagingData(BaseModel):
-    previous: Optional[str] = None
-    next: Optional[str] = None
-
 class InstagramResponse(BaseModel):
     data: List[MetricData]
-    paging: Optional[PagingData] = None
+    paging: Optional[Any] = None
 
-class ApiResponse(BaseModel):
-    """Generic API response model."""
-    data: Any
-    status: str = "success"
-    message: Optional[str] = None
-
-class ErrorResponse(BaseModel):
-    """Error response model."""
-    status: str = "error"
-    message: str
-    details: Optional[Dict[str, Any]] = None
-
+# Sample request models
 class SampleRequest(BaseModel):
     """Sample request model."""
     url: str
@@ -112,4 +104,4 @@ class SampleRequest(BaseModel):
 
 class SampleRequestsResponse(BaseModel):
     """Sample requests response model."""
-    samples: Dict[str, SampleRequest] 
+    samples: dict[str, SampleRequest] 
