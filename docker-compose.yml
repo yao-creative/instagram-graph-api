@@ -1,12 +1,103 @@
-version: '3'
+version: '3.8'
 
 services:
+  # Main API service
   api:
     build: .
+    container_name: instagram-graph-api
     ports:
-      - "8002:8000"
+      - "8001:8000"
+    env_file:
+      - .env
     environment:
       - INSTAGRAM_ACCESS_TOKEN=${INSTAGRAM_ACCESS_TOKEN}
+      - SUPABASE_URL=http://api_supabase_ig:3001
+      - SUPABASE_KEY=${SUPABASE_KEY}
     volumes:
-      - .:/app
-    restart: unless-stopped 
+      - ./app:/app/app
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+    depends_on:
+      - postgres_ig
+      - api_supabase_ig
+    networks:
+      - instagram-api-network
+  
+  # Supabase Services
+  postgres_ig:
+    container_name: postgres_ig
+    image: postgres:15
+    restart: unless-stopped
+    volumes:
+      - postgres_data_ig:/var/lib/postgresql/data
+      - ./supabase/migrations:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - instagram-api-network
+
+  pgadmin_ig:
+    container_name: pgadmin_ig
+    image: dpage/pgadmin4:7.6
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_LISTEN_PORT: 80
+    ports:
+      - "5051:80"
+    depends_on:
+      - postgres_ig
+    networks:
+      - instagram-api-network
+
+  api_supabase_ig:
+    container_name: postgrest_ig
+    image: postgrest/postgrest:v11.1.0
+    restart: unless-stopped
+    depends_on:
+      - postgres_ig
+    environment:
+      PGRST_DB_URI: postgres://postgres:postgres@postgres_ig:5432/postgres
+      PGRST_DB_SCHEMA: public
+      PGRST_DB_ANON_ROLE: anon
+      PGRST_JWT_SECRET: your-super-secret-jwt-token-for-development-only
+    ports:
+      - "3001:3000"
+    networks:
+      - instagram-api-network
+
+  meta_ig:
+    container_name: supabase_meta_ig
+    image: supabase/postgres-meta:0.68.0
+    restart: unless-stopped
+    depends_on:
+      - postgres_ig
+    environment:
+      PG_META_DB_CONNECTION_STRING: postgres://postgres:postgres@postgres_ig:5432/postgres
+      PORT: 8080
+    ports:
+      - "8081:8080"
+    networks:
+      - instagram-api-network
+
+volumes:
+  postgres_data_ig:
+
+networks:
+  instagram-api-network:
+    driver: bridge 
