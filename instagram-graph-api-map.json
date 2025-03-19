@@ -1,0 +1,1332 @@
+[
+    {
+      "api_endpoints": [
+        {
+          "path": "/<IG_HASHTAG_ID>/recent_media",
+          "Output": [
+            {
+              "name": "data",
+              "type": "array",
+              "description": "An array of IG Media objects."
+            },
+            {
+              "name": "paging",
+              "type": "object",
+              "description": "Pagination information for the results."
+            }
+          ],
+          "method": "GET",
+          "parameters": [
+            {
+              "name": "user_id",
+              "type": "string",
+              "required": true,
+              "description": "The ID for person querying the data",
+              "Compatibilities": ""
+            },
+            {
+              "name": "fields",
+              "type": "string",
+              "required": true,
+              "description": "A comma-separated list of fields on a media object",
+              "Compatibilities": ""
+            }
+          ],
+          "description": "Returns a list of the most recently published photo and video IG Media objects published with a specific hashtag."
+        },
+        {
+          "path": "/{ig-user-id}/live_media",
+          "Output": [
+            {
+              "name": "data",
+              "type": "Array",
+              "description": "An array of IG Media on an IG User."
+            },
+            {
+              "name": "paging",
+              "type": "Object",
+              "description": "An object containing paging cursors and next/previous data set retrieval URLs."
+            }
+          ],
+          "method": "GET",
+          "parameters": [
+            {
+              "name": "{api-version}",
+              "type": "String",
+              "required": true,
+              "description": "API version",
+              "Compatibilities": ""
+            },
+            {
+              "name": "{ig-user-id}",
+              "type": "String",
+              "required": true,
+              "description": "App user's app-scoped user ID.",
+              "Compatibilities": ""
+            },
+            {
+              "name": "access_token",
+              "type": "String",
+              "required": true,
+              "description": "App user's User",
+              "Compatibilities": ""
+            },
+            {
+              "name": "fields",
+              "type": "String",
+              "required": false,
+              "description": "Comma-separated list of IG Media fields you want returned for each live IG Media in the result set.",
+              "Compatibilities": ""
+            },
+            {
+              "name": "since",
+              "type": "timestamp",
+              "required": false,
+              "description": "A Unix timestamp or strtotime data value that points to the start of a range of time-based data.",
+              "Compatibilities": ""
+            },
+            {
+              "name": "until",
+              "type": "timestamp",
+              "required": false,
+              "description": "A Unix timestamp or strtotime data value that points to the end of a range of time-based data.",
+              "Compatibilities": ""
+            }
+          ],
+          "description": "Get a collection of live video IG Media on an IG User."
+        },
+        {
+          "path": "/ig_hashtag_search",
+          "Output": [
+            {
+              "name": "data",
+              "type": "array",
+              "description": "An array containing the ID of the requested IG Hashtag."
+            }
+          ],
+          "method": "GET",
+          "parameters": [
+            {
+              "name": "user_id",
+              "type": "string",
+              "required": true,
+              "description": "The ID of the IG User performing the request.",
+              "Compatibilities": ""
+            },
+            {
+              "name": "q",
+              "type": "string",
+              "required": true,
+              "description": "The hashtag name to query.",
+              "Compatibilities": ""
+            }
+          ],
+          "description": "This root edge allows you to get IG Hashtag IDs."
+        },
+        {
+          "path": "/<IG_MEDIA_ID>",
+          "Output": [
+            {
+              "name": "id",
+              "type": "string",
+              "description": "Media ID."
+            },
+            {
+              "name": "media_type",
+              "type": "string",
+              "description": "Media type. Can be CAROUSEL_ALBUM, IMAGE, or VIDEO."
+            },
+            {
+              "name": "media_url",
+              "type": "string",
+              "description": "The URL for the media."
+            },
+            {
+              "name": "owner",
+              "type": "object",
+              "description": "Instagram user ID who created the media."
+            },
+            {
+              "name": "timestamp",
+              "type": "string",
+              "description": "ISO 8601 formatted creation date in UTC."
+            }
+          ],
+          "method": "GET",
+          "parameters": [
+            {
+              "name": "<API_VERSION>",
+              "type": "string",
+              "required": true,
+              "description": "The API version your app is using.",
+              "Compatibilities": "Instagram API with Instagram Login, Instagram API with Facebook Login"
+            },
+            {
+              "name": "<HOST_URL>",
+              "type": "string",
+              "required": true,
+              "description": "The host URL your app is using to query the endpoint.",
+              "Compatibilities": "Instagram API with Instagram Login, Instagram API with Facebook Login"
+            },
+            {
+              "name": "<IG_MEDIA_ID>",
+              "type": "string",
+              "required": true,
+              "description": "ID for the media to be published.",
+              "Compatibilities": "Instagram API with Instagram Login, Instagram API with Facebook Login"
+            },
+            {
+              "name": "access_token",
+              "type": "string",
+              "required": true,
+              "description": "The app user's Facebook or Instagram User access token.",
+              "Compatibilities": "Instagram API with Instagram Login, Instagram API with Facebook Login"
+            },
+            {
+              "name": "fields",
+              "type": "string",
+              "required": true,
+              "description": "Comma-separated list of fields you want returned.",
+              "Compatibilities": "Instagram API with Instagram Login, Instagram API with Facebook Login"
+            }
+          ],
+          "description": "Gets fields and edges on Instagram media."
+        },
+        {
+          "path": "/oauth/authorize",
+          "Output": [
+            {
+              "name": "code",
+              "type": "string",
+              "description": "Authorization code returned on successful authorization"
+            }
+          ],
+          "method": "GET",
+          "parameters": [
+            {
+              "name": "client_id",
+              "type": "string",
+              "required": true,
+              "description": "Your app's Instagram App ID",
+              "Compatibilities": ""
+            },
+            {
+              "name": "enable_fb_login",
+              "type": "boolean",
+              "required": false,
+              "description": "Allows an app user to log in with Facebook if set to 1",
+              "Compatibilities": ""
+            },
+            {
+              "name": "force_authentication",
+              "type": "boolean",
+              "required": false,
+              "description": "Forces an app user to use their Instagram credentials if set to 1",
+              "Compatibilities": ""
+            },
+            {
+              "name": "redirect_uri",
+              "type": "string",
+              "required": true,
+              "description": "A URI where we will redirect users after they allow or deny permission request",
+              "Compatibilities": ""
+            },
+            {
+              "name": "response_type",
+              "type": "string",
+              "required": true,
+              "description": "Set this value to 'code'",
+              "Compatibilities": ""
+            },
+            {
+              "name": "scope",
+              "type": "string",
+              "required": true,
+              "description": "A comma-separated list of permissions to request from the app user",
+              "Compatibilities": ""
+            },
+            {
+              "name": "state",
+              "type": "string",
+              "required": false,
+              "description": "An optional value indicating a server-specific state",
+              "Compatibilities": ""
+            }
+          ],
+          "description": "Get an authorization code from your app user"
+        },
+        {
+          "path": "/oauth/access_token",
+          "Output": [
+            {
+              "name": "access_token",
+              "type": "string",
+              "description": "Short-lived Instagram User access token"
+            },
+            {
+              "name": "user_id",
+              "type": "string",
+              "description": "Instagram App-scoped User ID"
+            },
+            {
+              "name": "permissions",
+              "type": "string",
+              "description": "List of permissions granted by the app user"
+            }
+          ],
+          "method": "POST",
+          "parameters": [
+            {
+              "name": "client_id",
+              "type": "string",
+              "required": true,
+              "description": "Your app's Instagram App ID",
+              "Compatibilities": ""
+            },
+            {
+              "name": "client_secret",
+              "type": "string",
+              "required": true,
+              "description": "Your Instagram App Secret",
+              "Compatibilities": ""
+            },
+            {
+              "name": "grant_type",
+              "type": "string",
+              "required": true,
+              "description": "Set this value to 'authorization_code'",
+              "Compatibilities": ""
+            },
+            {
+              "name": "redirect_uri",
+              "type": "string",
+              "required": true,
+              "description": "The redirect URI you passed when directing the user to the Authorization Window",
+              "Compatibilities": ""
+            },
+            {
+              "name": "code",
+              "type": "string",
+              "required": true,
+              "description": "The authorization code passed in the redirect URI",
+              "Compatibilities": ""
+            }
+          ],
+          "description": "Exchange an authorization code for a short-lived access token"
+        },
+        {
+          "path": "/access_token",
+          "Output": [
+            {
+              "name": "access_token",
+              "type": "string",
+              "description": "Long-lived access token"
+            },
+            {
+              "name": "token_type",
+              "type": "string",
+              "description": "Type of token returned"
+            },
+            {
+              "name": "expires_in",
+              "type": "integer",
+              "description": "Number of seconds until token expires"
+            }
+          ],
+          "method": "GET",
+          "parameters": [
+            {
+              "name": "grant_type",
+              "type": "string",
+              "required": true,
+              "description": "Set this value to 'ig_exchange_token'",
+              "Compatibilities": ""
+            },
+            {
+              "name": "client_secret",
+              "type": "string",
+              "required": true,
+              "description": "Your Instagram App Secret",
+              "Compatibilities": ""
+            },
+            {
+              "name": "access_token",
+              "type": "string",
+              "required": true,
+              "description": "Your app user's valid short-lived Instagram user access token",
+              "Compatibilities": ""
+            }
+          ],
+          "description": "Get a long-lived access token"
+        },
+        {
+          "path": "/refresh_access_token",
+          "Output": [
+            {
+              "name": "access_token",
+              "type": "string",
+              "description": "New long-lived access token"
+            },
+            {
+              "name": "token_type",
+              "type": "string",
+              "description": "Type of token returned"
+            },
+            {
+              "name": "expires_in",
+              "type": "integer",
+              "description": "Number of seconds until token expires"
+            }
+          ],
+          "method": "GET",
+          "parameters": [
+            {
+              "name": "grant_type",
+              "type": "string",
+              "required": true,
+              "description": "Set this value to 'ig_refresh_token'",
+              "Compatibilities": ""
+            },
+            {
+              "name": "access_token",
+              "type": "string",
+              "required": true,
+              "description": "The long-lived access token that is about to expire",
+              "Compatibilities": ""
+            }
+          ],
+          "description": "Refresh a long-lived access token"
+        },
+        {
+          "path": "/<IG_ID>/conversations",
+          "Output": [
+            {
+              "name": "data",
+              "type": "array",
+              "description": "List of conversation IDs and their updated times."
+            }
+          ],
+          "method": "GET",
+          "parameters": [
+            {
+              "name": "platform",
+              "type": "string",
+              "required": true,
+              "description": "The platform for which the request is made.",
+              "Compatibilities": "Instagram"
+            },
+            {
+              "name": "access_token",
+              "type": "string",
+              "required": true,
+              "description": "Access token for the Instagram user.",
+              "Compatibilities": "Instagram"
+            }
+          ],
+          "description": "Get a list of conversations for your app user's Instagram professional account."
+        },
+        {
+          "path": "/<IG_ID>/conversations",
+          "Output": [
+            {
+              "name": "data",
+              "type": "array",
+              "description": "List of conversation IDs."
+            }
+          ],
+          "method": "GET",
+          "parameters": [
+            {
+              "name": "user_id",
+              "type": "string",
+              "required": true,
+              "description": "The Instagram-scoped ID for the Instagram user in the conversation.",
+              "Compatibilities": "Instagram"
+            },
+            {
+              "name": "access_token",
+              "type": "string",
+              "required": true,
+              "description": "Access token for the Instagram user.",
+              "Compatibilities": "Instagram"
+            }
+          ],
+          "description": "Find a conversation with a specific person."
+        },
+        {
+          "path": "/<CONVERSATION_ID>",
+          "Output": [
+            {
+              "name": "messages",
+              "type": "object",
+              "description": "List of messages with their IDs and creation times."
+            },
+            {
+              "name": "id",
+              "type": "string",
+              "description": "The ID of the conversation."
+            }
+          ],
+          "method": "GET",
+          "parameters": [
+            {
+              "name": "fields",
+              "type": "string",
+              "required": true,
+              "description": "Comma separated list of fields to retrieve.",
+              "Compatibilities": "Instagram"
+            },
+            {
+              "name": "access_token",
+              "type": "string",
+              "required": true,
+              "description": "Access token for the Instagram user.",
+              "Compatibilities": "Instagram"
+            }
+          ],
+          "description": "Get a list of messages in a conversation."
+        },
+        {
+          "path": "/<MESSAGE_ID>",
+          "Output": [
+            {
+              "name": "id",
+              "type": "string",
+              "description": "The ID of the message."
+            },
+            {
+              "name": "created_time",
+              "type": "string",
+              "description": "The time the message was created."
+            },
+            {
+              "name": "to",
+              "type": "object",
+              "description": "Information about the recipient."
+            },
+            {
+              "name": "from",
+              "type": "object",
+              "description": "Information about the sender."
+            },
+            {
+              "name": "message",
+              "type": "string",
+              "description": "The content of the message."
+            }
+          ],
+          "method": "GET",
+          "parameters": [
+            {
+              "name": "fields",
+              "type": "string",
+              "required": false,
+              "description": "Comma separated list of fields to retrieve, default fields are id and created_time.",
+              "Compatibilities": "Instagram"
+            },
+            {
+              "name": "access_token",
+              "type": "string",
+              "required": true,
+              "description": "Access token for the Instagram user.",
+              "Compatibilities": "Instagram"
+            }
+          ],
+          "description": "Get information about a message."
+        },
+        {
+          "path": "/me",
+          "Output": [
+            {
+              "name": "user_id",
+              "type": "string",
+              "description": "The Instagram professional account ID."
+            },
+            {
+              "name": "username",
+              "type": "string",
+              "description": "The app user's Instagram username."
+            },
+            {
+              "name": "user_id",
+              "type": "string",
+              "description": "The Instagram professional account ID for your app user."
+            }
+          ],
+          "method": "GET",
+          "parameters": [
+            {
+              "name": "fields",
+              "type": "string",
+              "required": true,
+              "description": "Comma-separated list of fields to return.",
+              "Compatibilities": ""
+            },
+            {
+              "name": "access_token",
+              "type": "string",
+              "required": true,
+              "description": "Access token from the app dashboard.",
+              "Compatibilities": ""
+            }
+          ],
+          "description": "Get the app user's Instagram professional account user ID and username."
+        },
+        {
+          "path": "/whatsapp/business-management-api/reference/business",
+          "Output": [
+            {
+              "name": "business",
+              "type": "object",
+              "description": "Details of the business."
+            }
+          ],
+          "method": "GET",
+          "parameters": [],
+          "description": "Represents a business. Includes any specified properties and assets belonging to the business."
+        },
+        {
+          "path": "/whatsapp/business-management-api/reference/business/client_whatsapp_business_accounts",
+          "Output": [
+            {
+              "name": "client_whatsapp_business_accounts",
+              "type": "array",
+              "description": "List of client WhatsApp Business Accounts."
+            }
+          ],
+          "method": "GET",
+          "parameters": [],
+          "description": "Represents WhatsApp Business Accounts (WABAs) assigned to or shared with a specific business."
+        },
+        {
+          "path": "/whatsapp/business-management-api/reference/business/owned_whatsapp_business_accounts",
+          "Output": [
+            {
+              "name": "owned_whatsapp_business_accounts",
+              "type": "array",
+              "description": "List of owned WhatsApp Business Accounts."
+            }
+          ],
+          "method": "GET",
+          "parameters": [],
+          "description": "Represents the WhatsApp Business Accounts (WABAs) owned by a business."
+        },
+        {
+          "path": "/whatsapp/business-management-api/reference/business/extendedcredits",
+          "Output": [
+            {
+              "name": "extended_credits",
+              "type": "array",
+              "description": "List of extended credits."
+            }
+          ],
+          "method": "GET",
+          "parameters": [],
+          "description": "Represents credit lines that belong to a business. Call this endpoint to get an ID for the credit lines."
+        },
+        {
+          "path": "/whatsapp/business-management-api/reference/whatsapp-business-account",
+          "Output": [
+            {
+              "name": "whatsapp_business_account",
+              "type": "object",
+              "description": "Details of the WhatsApp Business Account."
+            }
+          ],
+          "method": "GET",
+          "parameters": [],
+          "description": "Represents a specific WhatsApp Business Account (WABA). Make the API call to the WABA ID."
+        },
+        {
+          "path": "/whatsapp/business-management-api/reference/whatsapp-business-account/message_templates",
+          "Output": [
+            {
+              "name": "message_templates",
+              "type": "array",
+              "description": "List of message templates."
+            }
+          ],
+          "method": "GET",
+          "parameters": [],
+          "description": "Represents a collection of message templates that belong to a WhatsApp Business Account (WABA)."
+        },
+        {
+          "path": "/whatsapp/business-management-api/reference/whatsapp-business-account/phone_numbers",
+          "Output": [
+            {
+              "name": "phone_numbers",
+              "type": "array",
+              "description": "List of phone numbers."
+            }
+          ],
+          "method": "GET",
+          "parameters": [],
+          "description": "Represents phone numbers that belong to a specific WhatsApp Business Account (WABA)."
+        },
+        {
+          "path": "/whatsapp/business-management-api/reference/whatsapp-business-account/assigned_users",
+          "Output": [
+            {
+              "name": "assigned_users",
+              "type": "array",
+              "description": "List of assigned users."
+            }
+          ],
+          "method": "GET",
+          "parameters": [],
+          "description": "Represents users assigned to a specific WhatsApp Business Account (WABA)."
+        },
+        {
+          "path": "/whatsapp/business-management-api/reference/whats-app-business-account-to-number-current-status",
+          "Output": [
+            {
+              "name": "whatsapp_business_phone_number",
+              "type": "object",
+              "description": "Details of the WhatsApp Business Phone Number."
+            }
+          ],
+          "method": "GET",
+          "parameters": [],
+          "description": "Represents a specific phone number. Make the API call to the phone number ID."
+        },
+        {
+          "path": "/whatsapp/business-management-api/reference/whats-app-business-account-to-number-current-status/message_qrdls",
+          "Output": [
+            {
+              "name": "message_qrdls",
+              "type": "array",
+              "description": "List of QR codes and deep links."
+            }
+          ],
+          "method": "GET",
+          "parameters": [],
+          "description": "Represents the QR codes and deep links associated with a specific phone number."
+        },
+        {
+          "path": "/whatsapp/business-management-api/reference/whats-app-business-account-to-number-current-status/request_code",
+          "Output": [
+            {
+              "name": "request_code",
+              "type": "string",
+              "description": "The code requested for confirmation."
+            }
+          ],
+          "method": "POST",
+          "parameters": [],
+          "description": "Use this edge to request a code to confirm a phone number's ownership after migration."
+        },
+        {
+          "path": "/whatsapp/business-management-api/reference/whats-app-business-account-to-number-current-status/verify_code",
+          "Output": [
+            {
+              "name": "verification_status",
+              "type": "string",
+              "description": "Status of the verification."
+            }
+          ],
+          "method": "POST",
+          "parameters": [],
+          "description": "Use this edge to confirm a phone number's ownership after migration."
+        },
+        {
+          "path": "/whatsapp/business-management-api/reference/whats-app-business-account-to-number-current-status/whatsapp_commerce_settings",
+          "Output": [
+            {
+              "name": "commerce_settings",
+              "type": "object",
+              "description": "Commerce settings for the phone number."
+            }
+          ],
+          "method": "POST",
+          "parameters": [],
+          "description": "Enable or disable the business phone number's shopping cart and product catalog."
+        },
+        {
+          "path": "/whatsapp/business-management-api/reference/whats-app-business-hsm",
+          "Output": [
+            {
+              "name": "message_template",
+              "type": "object",
+              "description": "Details of the message template."
+            }
+          ],
+          "method": "GET",
+          "parameters": [],
+          "description": "Represents a specific message template. Make the API call to the message template ID."
+        },
+        {
+          "path": "/whatsapp/business-management-api/reference/whats-app-business-hsm/compare",
+          "Output": [
+            {
+              "name": "comparison_results",
+              "type": "object",
+              "description": "Results of the comparison."
+            }
+          ],
+          "method": "GET",
+          "parameters": [],
+          "description": "Compare message template send counts and block ratios."
+        },
+        {
+          "path": "/whatsapp/business-management-api/reference/waba-analytics",
+          "Output": [
+            {
+              "name": "analytics_info",
+              "type": "object",
+              "description": "Analytics information for the WhatsApp Business Account."
+            }
+          ],
+          "method": "GET",
+          "parameters": [],
+          "description": "Represents analytics information about a specific WhatsApp Business Account (WABA)."
+        },
+        {
+          "path": "/whatsapp/business-management-api/reference/extended-credit",
+          "Output": [
+            {
+              "name": "credit_line",
+              "type": "object",
+              "description": "Details of the credit line."
+            }
+          ],
+          "method": "GET",
+          "parameters": [],
+          "description": "Represents a specific credit line. Make the API call to the credit line ID."
+        },
+        {
+          "path": "/whatsapp/business-management-api/reference/extended-credit/owning_credit_allocation_configs",
+          "Output": [
+            {
+              "name": "credit_allocation_configs",
+              "type": "array",
+              "description": "List of credit allocation configurations."
+            }
+          ],
+          "method": "GET",
+          "parameters": [],
+          "description": "Represents a credit line's credit allocation configurations."
+        },
+        {
+          "path": "/<WHATSAPP_BUSINESS_PHONE_NUMBER_ID>/messages",
+          "Output": [
+            {
+              "name": "messaging_product",
+              "type": "string",
+              "description": "The messaging product used."
+            },
+            {
+              "name": "contacts",
+              "type": "array",
+              "description": "List of contacts that were sent the message."
+            },
+            {
+              "name": "messages",
+              "type": "array",
+              "description": "List of messages that were sent."
+            }
+          ],
+          "method": "POST",
+          "parameters": [
+            {
+              "name": "messaging_product",
+              "type": "string",
+              "required": true,
+              "description": "The messaging product being used, in this case, WhatsApp.",
+              "Compatibilities": ""
+            },
+            {
+              "name": "recipient_type",
+              "type": "string",
+              "required": true,
+              "description": "The type of recipient, either individual or group.",
+              "Compatibilities": ""
+            },
+            {
+              "name": "to",
+              "type": "string",
+              "required": true,
+              "description": "The WhatsApp user phone number to send the message to.",
+              "Compatibilities": ""
+            },
+            {
+              "name": "type",
+              "type": "string",
+              "required": true,
+              "description": "The type of message being sent.",
+              "Compatibilities": ""
+            },
+            {
+              "name": "context",
+              "type": "object",
+              "required": false,
+              "description": "Contextual information for replying to a previous message.",
+              "Compatibilities": ""
+            }
+          ],
+          "description": "Sends messages to WhatsApp users."
+        },
+        {
+          "path": "/{ig-user-id}/tags",
+          "Output": [
+            {
+              "name": "media_objects",
+              "type": "array",
+              "description": "List of media objects where the user has been tagged"
+            }
+          ],
+          "method": "GET",
+          "parameters": [
+            {
+              "name": "ig-user-id",
+              "type": "string",
+              "required": true,
+              "description": "The ID of the Instagram user",
+              "Compatibilities": ""
+            }
+          ],
+          "description": "to get the media objects in which a Business or Creator Account has been tagged"
+        },
+        {
+          "path": "/{ig-user-id}?fields=mentioned_comment",
+          "Output": [
+            {
+              "name": "mentioned_comment",
+              "type": "object",
+              "description": "Details of the mentioned comment"
+            }
+          ],
+          "method": "GET",
+          "parameters": [
+            {
+              "name": "ig-user-id",
+              "type": "string",
+              "required": true,
+              "description": "The ID of the Instagram user",
+              "Compatibilities": ""
+            }
+          ],
+          "description": "to get data about a comment that a Business or Creator Account has been @mentioned in"
+        },
+        {
+          "path": "/{ig-user-id}?fields=mentioned_media",
+          "Output": [
+            {
+              "name": "mentioned_media",
+              "type": "object",
+              "description": "Details of the mentioned media object"
+            }
+          ],
+          "method": "GET",
+          "parameters": [
+            {
+              "name": "ig-user-id",
+              "type": "string",
+              "required": true,
+              "description": "The ID of the Instagram user",
+              "Compatibilities": ""
+            }
+          ],
+          "description": "to get data about a media object on which a Business or Creator Account has been @mentioned in a caption"
+        },
+        {
+          "path": "/{ig-user-id}/mentions",
+          "Output": [
+            {
+              "name": "reply_status",
+              "type": "string",
+              "description": "Status of the reply action"
+            }
+          ],
+          "method": "POST",
+          "parameters": [
+            {
+              "name": "ig-user-id",
+              "type": "string",
+              "required": true,
+              "description": "The ID of the Instagram user",
+              "Compatibilities": ""
+            },
+            {
+              "name": "message",
+              "type": "string",
+              "required": true,
+              "description": "The message to reply with",
+              "Compatibilities": ""
+            }
+          ],
+          "description": "to reply to a comment or media object caption that a Business or Creator Account has been @mentioned in by another Instagram user"
+        },
+        {
+          "path": "/<IG_ID>/media",
+          "Output": [
+            {
+              "name": "id",
+              "type": "string",
+              "description": "Instagram Container ID"
+            }
+          ],
+          "method": "POST",
+          "parameters": [
+            {
+              "name": "image_url",
+              "type": "string",
+              "required": true,
+              "description": "The URL for your image.",
+              "Compatibilities": ""
+            }
+          ],
+          "description": "Upload media and create media containers."
+        },
+        {
+          "path": "/<IG_ID>/media_publish",
+          "Output": [
+            {
+              "name": "id",
+              "type": "string",
+              "description": "Instagram Media ID"
+            }
+          ],
+          "method": "POST",
+          "parameters": [
+            {
+              "name": "creation_id",
+              "type": "string",
+              "required": true,
+              "description": "The Instagram Container ID from the previous step.",
+              "Compatibilities": ""
+            }
+          ],
+          "description": "Publish uploaded media using their media containers."
+        },
+        {
+          "path": "/<IG_CONTAINER_ID>?fields=status_code",
+          "Output": [
+            {
+              "name": "status_code",
+              "type": "string",
+              "description": "The status of the media container."
+            }
+          ],
+          "method": "GET",
+          "parameters": [],
+          "description": "Check media container publishing eligibility and status."
+        },
+        {
+          "path": "/<IG_ID>/content_publishing_limit",
+          "Output": [
+            {
+              "name": "limit",
+              "type": "integer",
+              "description": "The current publishing rate limit."
+            },
+            {
+              "name": "usage",
+              "type": "integer",
+              "description": "The current usage of the publishing limit."
+            }
+          ],
+          "method": "GET",
+          "parameters": [],
+          "description": "Check app user's current publishing rate limit usage."
+        },
+        {
+          "path": "/v22.0/act_<AD_ACCOUNT_ID>/customaudiences",
+          "Output": [
+            {
+              "name": "id",
+              "type": "string",
+              "description": "The ID of the created custom audience."
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "description": "The name of the custom audience."
+            }
+          ],
+          "method": "POST",
+          "parameters": [
+            {
+              "name": "name",
+              "type": "string",
+              "required": true,
+              "description": "The name of the custom audience.",
+              "Compatibilities": ""
+            },
+            {
+              "name": "subtype",
+              "type": "string",
+              "required": true,
+              "description": "The subtype of the audience, e.g., CUSTOM.",
+              "Compatibilities": ""
+            },
+            {
+              "name": "access_token",
+              "type": "string",
+              "required": true,
+              "description": "The access token for authentication.",
+              "Compatibilities": ""
+            }
+          ],
+          "description": "Allows you to create and manage custom and lookalike audiences, tailoring ads to specific user segments based on demographics, interests, and behaviors."
+        },
+        {
+          "path": "/v22.0/act_<AD_ACCOUNT_ID>/insights",
+          "Output": [
+            {
+              "name": "impressions",
+              "type": "integer",
+              "description": "The number of impressions."
+            },
+            {
+              "name": "clicks",
+              "type": "integer",
+              "description": "The number of clicks."
+            },
+            {
+              "name": "spend",
+              "type": "float",
+              "description": "The total spend."
+            }
+          ],
+          "method": "GET",
+          "parameters": [
+            {
+              "name": "fields",
+              "type": "string",
+              "required": true,
+              "description": "Comma-separated list of fields to return, e.g., impressions, clicks, spend.",
+              "Compatibilities": ""
+            },
+            {
+              "name": "time_range",
+              "type": "string",
+              "required": true,
+              "description": "The time range for the insights, formatted as JSON.",
+              "Compatibilities": ""
+            },
+            {
+              "name": "access_token",
+              "type": "string",
+              "required": true,
+              "description": "The access token for authentication.",
+              "Compatibilities": ""
+            }
+          ],
+          "description": "Provides valuable analytics about the performance of campaigns, ad sets, and ads, allowing you to track key metrics such as impressions, clicks, and conversions."
+        },
+        {
+          "path": "/v1/messages",
+          "Output": [
+            {
+              "name": "messages",
+              "type": "array",
+              "description": "An array of message objects containing the message ID and status."
+            }
+          ],
+          "method": "POST",
+          "parameters": [
+            {
+              "name": "recipient_type",
+              "type": "string",
+              "required": true,
+              "description": "Currently, you can only send messages to individuals. Set this as 'individual'. Default: 'individual'.",
+              "Compatibilities": ""
+            },
+            {
+              "name": "to",
+              "type": "string",
+              "required": true,
+              "description": "WhatsApp ID or phone number of the customer you want to send a message to.",
+              "Compatibilities": ""
+            },
+            {
+              "name": "type",
+              "type": "string",
+              "required": false,
+              "description": "The type of message you want to send. If omitted, defaults to 'text'.",
+              "Compatibilities": ""
+            },
+            {
+              "name": "text",
+              "type": "object",
+              "required": false,
+              "description": "Required for text messages. A text object containing the message body.",
+              "Compatibilities": ""
+            },
+            {
+              "name": "audio",
+              "type": "object",
+              "required": false,
+              "description": "Required when type=audio. A media object containing audio.",
+              "Compatibilities": ""
+            },
+            {
+              "name": "document",
+              "type": "object",
+              "required": false,
+              "description": "Required when type=document. A media object containing a document.",
+              "Compatibilities": ""
+            },
+            {
+              "name": "image",
+              "type": "object",
+              "required": false,
+              "description": "Required when type=image. A media object containing an image.",
+              "Compatibilities": ""
+            },
+            {
+              "name": "video",
+              "type": "object",
+              "required": false,
+              "description": "Required when type=video. A media object containing a video.",
+              "Compatibilities": ""
+            },
+            {
+              "name": "location",
+              "type": "object",
+              "required": false,
+              "description": "Required when type=location. A location object containing latitude and longitude.",
+              "Compatibilities": ""
+            },
+            {
+              "name": "interactive",
+              "type": "object",
+              "required": false,
+              "description": "Required when type=interactive. An interactive object containing the message components.",
+              "Compatibilities": ""
+            },
+            {
+              "name": "template",
+              "type": "object",
+              "required": false,
+              "description": "Required when type=template. A template object containing the message template details.",
+              "Compatibilities": ""
+            }
+          ],
+          "description": "Use the messages node to send text, media, contacts, locations, and interactive messages, as well as message templates to your customers."
+        },
+        {
+          "path": "/PHONE_NUMBER_ID/whatsapp_business_profile",
+          "Output": [
+            {
+              "name": "data",
+              "type": "array",
+              "description": "An array containing the business profile data."
+            }
+          ],
+          "method": "GET",
+          "parameters": [
+            {
+              "name": "fields",
+              "type": "string",
+              "required": true,
+              "description": "The fields you want to retrieve from the business profile.",
+              "Compatibilities": "All versions"
+            }
+          ],
+          "description": "Use this endpoint to retrieve and update your business profile. Customers can view your business profile by clicking your business's name or number in a conversation thread."
+        },
+        {
+          "path": "/PHONE_NUMBER_ID/whatsapp_business_profile",
+          "Output": [
+            {
+              "name": "success",
+              "type": "boolean",
+              "description": "Indicates whether the update was successful."
+            }
+          ],
+          "method": "POST",
+          "parameters": [
+            {
+              "name": "about",
+              "type": "string",
+              "required": false,
+              "description": "The business's About text. This text appears in the business's profile, beneath its profile image, phone number, and contact buttons.",
+              "Compatibilities": "All versions"
+            },
+            {
+              "name": "address",
+              "type": "string",
+              "required": false,
+              "description": "Address of the business. Character limit 256.",
+              "Compatibilities": "All versions"
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "required": false,
+              "description": "Description of the business. Character limit 512.",
+              "Compatibilities": "All versions"
+            },
+            {
+              "name": "email",
+              "type": "string",
+              "required": false,
+              "description": "The contact email address of the business. Character limit 128.",
+              "Compatibilities": "All versions"
+            },
+            {
+              "name": "messaging_product",
+              "type": "string",
+              "required": true,
+              "description": "The messaging service used for the request. Always set it to 'whatsapp'.",
+              "Compatibilities": "All versions"
+            },
+            {
+              "name": "profile_picture_handle",
+              "type": "string",
+              "required": false,
+              "description": "Handle of the profile picture. This handle is generated when you upload the binary file for the profile picture to Meta.",
+              "Compatibilities": "All versions"
+            },
+            {
+              "name": "vertical",
+              "type": "string",
+              "required": false,
+              "description": "Industry of the business. This can be either an empty string or one of the accepted values.",
+              "Compatibilities": "All versions"
+            },
+            {
+              "name": "websites",
+              "type": "array",
+              "required": false,
+              "description": "The URLs associated with the business. For instance, a website, Facebook Page, or Instagram. You must include the http:// or https:// portion of the URL.",
+              "Compatibilities": "All versions"
+            }
+          ],
+          "description": "To update your profile, make a POST call to this endpoint. You can include the parameters listed below."
+        },
+        {
+          "path": "/PHONE_NUMBER_ID/whatsapp_business_profile",
+          "Output": [
+            {
+              "name": "success",
+              "type": "boolean",
+              "description": "Indicates whether the deletion was successful."
+            }
+          ],
+          "method": "DELETE",
+          "parameters": [],
+          "description": "To delete your business profile, you must delete your phone number."
+        },
+        {
+          "path": "/v22.0/{application-id}/purchases",
+          "Output": [
+            {
+              "name": "data",
+              "type": "array",
+              "description": "A list of GamesIAPOrder nodes."
+            },
+            {
+              "name": "paging",
+              "type": "object",
+              "description": "For more details about pagination, see the Graph API guide."
+            }
+          ],
+          "method": "GET",
+          "parameters": [],
+          "description": "Get information on purchases associated with this user-app pair"
+        }
+      ]
+    }
+  ]
