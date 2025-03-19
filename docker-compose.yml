@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # Main API service
   api:
@@ -83,7 +81,7 @@ services:
 
   meta_ig:
     container_name: supabase_meta_ig
-    image: supabase/postgres-meta:0.68.0
+    image: supabase/postgres-meta:v0.86.1
     restart: unless-stopped
     depends_on:
       - postgres_ig
